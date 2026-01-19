@@ -21,4 +21,5 @@ from prontuario.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', ficha_view, name='ficha'),
+    path('atendimento/', atendimento_view, name='atendimento')
 ]

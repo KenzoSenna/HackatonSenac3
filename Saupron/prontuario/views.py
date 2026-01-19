@@ -6,3 +6,5 @@ from django.http import HttpResponse
 def ficha_view(request):
     return render(request, 'ficha.html')
 
+def atendimento_view(request):
+    return render(request, 'atendimento.html')
