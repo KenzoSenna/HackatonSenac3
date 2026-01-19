@@ -1,15 +1,123 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ficha Médica</title>
-    <link rel="stylesheet" href="{% static 'prontuario/styles.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>tela</title>
 </head>
 <body>
+    <main>
+        <div class="container" id="form-paciente">
+            <h2>Informações do Paciente</h2>
 
-<h1>Kenzo lindo 123</h1>
-<h3>hudson feio 456</h3>
+            <div class="form-group">
+                <div class="label"><label for="nome">Nome Completo</label></div>
+                <div class="input"><input type="text" id="nome" name="nome"><div class="sublabel">Nome</div></div>
+                <div class="input"><input type="text" id="sobrenome" name="sobrenome"><div class="sublabel">Sobrenome</div></div>
+            </div>
 
+            <div class="form-group">
+                <div class="label"><label for="idade">Idade</label></div>
+                <div class="input"><input type="number" id="idade" name="idade"></div>
+            </div>
+
+            <div class="form-group">
+                <div class="label"><label for="dataNasc">Data de Nascimento</label></div>
+                <div class="input"><input type="date" id="dataNasc" name="dataNasc"></div>
+            </div>
+ 
+            <div class="form-group"> 
+                <div class="label"><label for="genero">Genero</label></div>
+                <div class="input"> 
+                    <select id="genero" name="genero">
+                        <option value="">Selecione</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="feminino">Feminino</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group"> 
+                <div class="label"><label for="numeroTelefone">Número de Telefone</label></div>
+                
+                <div id="form-telefone" class="form-subgroup">
+                    <div class="input" style="width: 30%"><input class="inputMenor" type="text" id="ddd" name="ddd"><div class="sublabel">DDD</div></div>
+                    <div class="input"style="width: 70%"><input type="text" id="telefone" name="telefone"><div class="sublabel">Telefone</div></div>
+                </div>
+            </div>
+
+            <div class="form-group"> 
+                <div class="label"><label for="email">Email</label></div>
+                <div class="input">
+                    <input type="text" id="email" name="email"><div class="sublabel">exemplo@exemplo.com</div>
+                </div>
+            </div>
+
+            <div class="form-group"> 
+                <div class="label"><label for="endereco">Endereço</label></div>
+                
+                <div class="form-subgroup" style="flex-direction: column; ">
+                    <div><input type="text" id="cep" name="cep"><div class="sublabel">CEP</div> </div>
+                    
+                        <div class="form-subgroup">
+                            <div><input type="text" id="rua" name="rua" disabled><div class="sublabel">Rua</div></div>                    
+                            <div><input class="inputMenor" type="number" id="numero" name="numero" disabled><div class="sublabel">Número</div> </div>                         
+                        </div>
+
+                        <div class="form-subgroup">
+                            <div><input class="inputMenor" type="text" id="estado" name="estado" disabled><div class="sublabel">UF</div></div> 
+                            <div><input type="text" id="cidade" name="cidade" disabled><div class="sublabel">Cidade</div></div> 
+        
+                        </div>
+                </div>
+            </div>
+
+            <div class="form-group"> 
+                <div class="label"><label for="estadoCivil">Estado Civil</label></div>
+                <div class="input"> 
+                    <select id="estadoCivil" name="estadoCivil">
+                        <option value="">Selecione</option>
+                        <option value="solteiro">Solteira(o)</option>
+                        <option value="casado">Casada(o)</option>
+                        <option value="divorciado">Divorciada(o)</option>
+                        <option value="viuvo">Viúva(o)</option>
+                        <option value="outro">Outro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group"> 
+                <div class="label"><label for="profissao">Profissão</label></div>
+                <div class="input">
+                    <input type="text" id="profissao" name="profissao"> 
+                </div>
+            </div>
+
+            <div class="form-group"> 
+                <div class="label"><label for="formacao">Formação Educacional</label></div>
+                <div class="input">
+                    <input type="text" id="formacao" name="formacao"> 
+                </div>
+            </div>
+
+            <div class="form-botao">
+                <button type="submit" class="botao  ">Proximo</button>
+            </div>
+
+        </div>
+
+        <!-- <div class="container" id="form-atendimento">
+            <h2>Informações do Atendimento</h2>
+ 
+
+        </div> -->
+
+    </main>
 </body>
 </html>
