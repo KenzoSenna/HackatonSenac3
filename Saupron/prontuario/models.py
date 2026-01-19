@@ -21,5 +21,31 @@ class Paciente(models.Model):
         choices=ESTADO_CIVIL_CHOICES,
         default='S'
     )
-    profissao = models.CharField(max_length='150')
-    formacao_educacional = models.CharField(max_length='150')
+    profissao = models.CharField(max_length=150)
+    formacao_educacional = models.CharField(max_length=150)
+
+
+class DadosClinicos(models.Model):
+    razao = models.CharField(max_length=255, null=False)
+    TIPO_SANGUINEO_CHOICES = [('A+', 'A+'), ('A-', 'A-'), ('B+', 'B+'), ('B-', 'B-'),
+    ('AB+', 'AB+'), ('AB-', 'AB-'), ('O+', 'O+'), ('O-', 'O-')]
+    tipo_sanguineo = models.CharField(max_length=3, choices=TIPO_SANGUINEO_CHOICES, default='O+')
+    pressao_arterial = models.IntegerField()
+    temperatura = models.CharField(max_length=4)
+    frequencia_respiratoria = models.IntegerField(max_length=2)
+    saturacao_oxigenio = models.CharField(max_length=4)
+    glicemia = models.IntegerField(max_length=3)
+    altura = models.IntegerField(max_length=4)
+    peso = models.IntegerField(max_length=4)
+    alergias = models.CharField(max_length=255)
+    medicamentos = models.CharField(max_length=255)
+    condicao_medica = models.CharField(max_length=255)
+
+class PrevioHistoricoMedico(models.Model):
+    internacao_anterior = models.CharField(max_length=255)
+    cirurgia_anterior = models.CharField(max_length=255)
+    doencas_familiares = models.CharField(max_length=255)
+
+# class RevisaoSistemas(models.Model):
+#     # sensorial = models.
+#     pass
