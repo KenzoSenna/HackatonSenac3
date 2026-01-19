@@ -1,65 +1,77 @@
-<form method="POST" action="{% url 'submit_atendimento_form' paciente.id %}">
-    {% csrf_token %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Ficha do Paciente</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <form method="POST" id="form-atendimento">
+        {% csrf_token %}
+    
+        <div class="form-group">
+            <label for="razao">Razão do Atendimento</label>
+            <div class="input">{{ form.razao }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="tipo_sanguineo">Tipo Sanguíneo</label>
+            <div class="input">{{ form.tipo_sanguineo }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="PA">Pressão Arterial</label>
+            <div class="input">{{ form.pressao_arterial }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="temperatura">Temperatura</label>
+            <div class="input">{{ form.temperatura }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="FR">Frequência Respiratória</label>
+            <div class="input">{{ form.frequencia_respiratoria }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="SO">Saturação de Oxigênio</label>
+            <div class="input">{{ form.saturacao_oxigenio }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="glicemia">Glicemia</label>
+            <div class="input">{{ form.glicemia }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="altura">Altura</label>
+            <div class="input">{{ form.altura }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="peso">Peso</label>
+            <div class="input">{{ form.peso }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="alergias">Alergias</label>
+            <div class="input">{{ form.alergias }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="medicamentos">Medicamentos</label>
+            <div class="input">{{ form.medicamentos }}</div>
+        </div>
+    
+        <div class="form-group">
+            <label for="CM">Condição Médica</label>
+            <div class="input">{{ form.condicao_medica }}</div>
+        </div>
+    
+        <button type="submit">Salvar Prontuário</button>
+    </form>    
+</body>
+</html>
 
-    <div class="form-group">
-        <label for="razao">Razão do Atendimento</label>
-        <div class="input">{{ form.razao }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="tipo_sanguineo">Tipo Sanguíneo</label>
-        <div class="input">{{ form.tipo_sanguineo }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="PA">Pressão Arterial</label>
-        <div class="input">{{ form.pressao_arterial }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="temperatura">Temperatura</label>
-        <div class="input">{{ form.temperatura }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="FR">Frequência Respiratória</label>
-        <div class="input">{{ form.frequencia_respiratoria }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="SO">Saturação de Oxigênio</label>
-        <div class="input">{{ form.saturacao_oxigenio }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="glicemia">Glicemia</label>
-        <div class="input">{{ form.glicemia }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="altura">Altura</label>
-        <div class="input">{{ form.altura }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="peso">Peso</label>
-        <div class="input">{{ form.peso }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="alergias">Alergias</label>
-        <div class="input">{{ form.alergias }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="medicamentos">Medicamentos</label>
-        <div class="input">{{ form.medicamentos }}</div>
-    </div>
-
-    <div class="form-group">
-        <label for="CM">Condição Médica</label>
-        <div class="input">{{ form.condicao_medica }}</div>
-    </div>
-
-    <button type="submit">Salvar Prontuário</button>
-</form>

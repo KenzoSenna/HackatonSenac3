@@ -5,7 +5,7 @@ class PacienteForm(forms.ModelForm):
     class Meta:
         model = Paciente
         fields = [
-            'nome', 'data_de_nascimento', 'genero', 'telefone', 'email',
+            'nome', 'data_de_nascimento', 'genero', 'telefone','cpf', 'email',
             'cep', 'numero_endereco', 'estado_civil', 'profissao', 'formacao_educacional'
         ]
         widgets = {
@@ -13,6 +13,7 @@ class PacienteForm(forms.ModelForm):
             'data_de_nascimento': forms.DateInput(attrs={'id': 'dataNasc', 'class': 'input', 'type': 'date'}),
             'genero': forms.Select(attrs={'id': 'genero', 'class': 'input'}),
             'telefone': forms.TextInput(attrs={'id': 'telefone', 'class': 'input'}),
+            'cpf': forms.TextInput(attrs={'id': 'cpf', 'class': 'input'}),
             'email': forms.EmailInput(attrs={'id': 'email', 'class': 'input'}),
             'cep': forms.TextInput(attrs={'id': 'cep', 'class': 'input'}),
             'numero_endereco': forms.NumberInput(attrs={'id': 'numero', 'class': 'inputMenor'}),

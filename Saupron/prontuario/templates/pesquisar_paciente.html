@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesquisar Paciente</title>
+    <link rel="stylesheet" href="{% static 'pesquisa.css' %}">
+</head>
+<body>
+    <h1>Pesquisar Paciente pelo CPF</h1>
+
+    <form method="GET" action="{% url 'pesquisar_paciente' %}">
+        {% csrf_token %}
+        <input type="text" name="cpf" placeholder="Digite o CPF">
+        <button type="submit">Pesquisar</button>
+    </form>
+
+    {% if paciente %}
+        <div class="card">
+            <h2>Dados do Paciente</h2>
+            <div class="info"><label>Nome:</label><span>{{ paciente.nome }}</span></div>
+            <div class="info"><label>Data de Nascimento:</label><span>{{ paciente.data_de_nascimento }}</span></div>
+            <div class="info"><label>Gênero:</label><span>{{ paciente.genero }}</span></div>
+            <div class="info"><label>Email:</label><span>{{ paciente.email }}</span></div>
+            <div class="info"><label>Telefone:</label><span>{{ paciente.telefone }}</span></div>
+            <div class="info"><label>Profissão:</label><span>{{ paciente.profissao }}</span></div>
+        </div>
+
+        <div class="card">
+            <h2>Dados Clínicos</h2>
+            <div class="info"><label>Razão:</label><span>{{ dados.razao }}</span></div>
+            <div class="info"><label>Tipo Sanguíneo:</label><span>{{ dados.tipo_sanguineo }}</span></div>
+            <div class="info"><label>Pressão Arterial:</label><span>{{ dados.pressao_arterial }}</span></div>
+            <div class="info"><label>Temperatura:</label><span>{{ dados.temperatura }}</span></div>
+            <div class="info"><label>Peso:</label><span>{{ dados.peso }}</span></div>
+            <div class="info"><label>Altura:</label><span>{{ dados.altura }}</span></div>
+        </div>
+
+        <div class="card">
+            <h2>Histórico Médico</h2>
+            <div class="info"><label>Internações:</label><span>{{ historico.internacao_anterior }}</span></div>
+            <div class="info"><label>Cirurgias:</label><span>{{ historico.cirurgia_anterior }}</span></div>
+            <div class="info"><label>Doenças Familiares:</label><span>{{ historico.doencas_familiares }}</span></div>
+        </div>
+    {% endif %}
+</body>
+</html>

@@ -8,6 +8,7 @@ class Paciente(models.Model):
     nome = models.CharField(max_length=255, null=False, blank=False)
     data_de_nascimento = models.DateField(auto_now=False,
     auto_now_add=False, null=False)
+    cpf = models.CharField(max_length=14, null=False, blank=False, unique=True)
     genero = models.CharField(max_length=1,
         choices=GENERO_CHOICES,
         default='M'

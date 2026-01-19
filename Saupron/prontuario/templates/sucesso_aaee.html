@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Sucesso</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div id="form-success">
+        <h2>Cadastro realizado com sucesso!</h2>
+        <p>Os dados foram salvos corretamente.</p>
+        <a href="{% url 'ficha' %}" class="botao">Cadastrar novo paciente</a>
+    </div>
+</body>
+</html>

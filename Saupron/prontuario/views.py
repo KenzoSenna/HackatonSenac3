@@ -1,60 +1,66 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Paciente, DadosClinicos, PrevioHistoricoMedico
+from .forms import PacienteForm, DadosClinicosForm, PrevioHistoricoMedicoForm
 
 def ficha_view(request):
-    return render(request, 'ficha.html')
-
-def atendimento_view(request):
-    return render(request, 'atendimento.html')
+    form = PacienteForm()
+    return render(request, 'ficha.html', {'form': form})
 
 def submit_paciente_form(request):
     if request.method == 'POST':
-        paciente = Paciente.objects.create(
-            nome=request.POST.get('nome'),
-            data_de_nascimento=request.POST.get('dataNasc'),
-            genero=request.POST.get('genero')[0].upper(),  # M/F/O
-            telefone=request.POST.get('telefone'),
-            email=request.POST.get('email'),
-            cep=request.POST.get('cep'),
-            numero_endereco=request.POST.get('numero'),
-            estado_civil=request.POST.get('estadoCivil')[0].upper(),
-            profissao=request.POST.get('profissao'),
-            formacao_educacional=request.POST.get('formacao')
-        )
-        return redirect('atendimento', paciente_id=paciente.id)
-
-    return render(request, 'ficha.html')
-
+        form = PacienteForm(request.POST)
+        if form.is_valid():
+            paciente = form.save()
+            return redirect('atendimento', paciente_id=paciente.id)
+    else:
+        form = PacienteForm()
+    return render(request, 'ficha.html', {'form': form})
 
 def submit_atendimento_form(request, paciente_id):
-    paciente = Paciente.objects.get(id=paciente_id)
+    paciente = get_object_or_404(Paciente, id=paciente_id)
     if request.method == 'POST':
-        DadosClinicos.objects.create(
-            paciente=paciente,
-            razao=request.POST.get('razao'),
-            tipo_sanguineo=request.POST.get('tipo_sanguineo'),
-            pressao_arterial=request.POST.get('PA'),
-            temperatura=request.POST.get('temperatura'),
-            frequencia_respiratoria=request.POST.get('FR'),
-            saturacao_oxigenio=request.POST.get('SO'),
-            glicemia=request.POST.get('glicemia'),
-            altura=request.POST.get('altura'),
-            peso=request.POST.get('peso'),
-            alergias=request.POST.get('alergias'),
-            medicamentos=request.POST.get('medicamentos'),
-            condicao_medica=request.POST.get('CM')
-        )
-        return render(request, 'atendimento.html', {'paciente': paciente})
-    
+        form = DadosClinicosForm(request.POST)
+        if form.is_valid():
+            dados = form.save(commit=False)
+            dados.paciente = paciente
+            dados.save()
+            return redirect('historico', paciente_id=paciente.id)
+    else:
+        form = DadosClinicosForm()
+    return render(request, 'registro_historico.html', {'form': form, 'paciente': paciente})
+
 def submit_historico_form(request, paciente_id):
-    paciente = Paciente.objects.get(id=paciente_id)
+    paciente = get_object_or_404(Paciente, id=paciente_id)
     if request.method == 'POST':
-        PrevioHistoricoMedico.objects.create(
-            paciente=paciente,
-            internacao_anterior=request.POST.get('internacao_anterior'),
-            cirurgia_anterior=request.POST.get('cirurgia_anterior'),
-            doencas_familiares=request.POST.get('doencas_familiares')
-        )
-        return render(request, 'atendimento.html', {'paciente': paciente})
+        form = PrevioHistoricoMedicoForm(request.POST)
+        if form.is_valid():
+            historico = form.save(commit=False)
+            historico.paciente = paciente
+            historico.save()
+            return redirect('success_page')
+    else:
+        form = PrevioHistoricoMedicoForm()
+    return render(request, 'registro_historico.html', {'form': form, 'paciente': paciente})
 
+def success_view(request):
+    return render(request, 'success.html')
 
+def pesquisar_paciente(request):
+    cpf = request.GET.get('cpf')
+    paciente = None
+    dados = None
+    historico = None
+
+    if cpf:
+        try:
+            paciente = Paciente.objects.get(cpf=cpf)
+            dados = DadosClinicos.objects.filter(paciente=paciente).last()
+            historico = PrevioHistoricoMedico.objects.filter(paciente=paciente).last()
+        except Paciente.DoesNotExist:
+            paciente = None
+
+    return render(request, 'pesquisa.html', {
+        'paciente': paciente,
+        'dados': dados,
+        'historico': historico
+    })
