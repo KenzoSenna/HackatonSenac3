@@ -29,7 +29,8 @@ class DadosClinicosForm(forms.ModelForm):
         fields = [
             'razao', 'tipo_sanguineo', 'pressao_sistolica', 'pressao_diastolica', 'temperatura',
             'frequencia_respiratoria', 'saturacao_oxigenio', 'glicemia',
-            'altura', 'peso', 'alergias', 'medicamentos', 'condicao_medica'
+            'altura', 'peso', 'alergias', 'medicamentos', 'condicao_medica', 
+            'internacao_anterior', 'cirurgia_anterior', 'doencas_familiares'
         ]
         widgets = {
             'razao': forms.TextInput(attrs={'id': 'razao', 'class': 'input'}),
