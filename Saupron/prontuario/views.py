@@ -50,7 +50,6 @@ def pesquisar_paciente(request):
     paciente = None
     dados = None
     historico = None
-
     if cpf:
         try:
             paciente = Paciente.objects.get(cpf=cpf)
@@ -64,3 +63,7 @@ def pesquisar_paciente(request):
         'dados': dados,
         'historico': historico
     })
+
+
+def home_view(request):
+    return render(request, 'home.html')

@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    <link rel="stylesheet" href="{% static 'homepage.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+<header>
+    <div class="logo">
+        <span class="material-icons">monitor_heart</span>
+    </div>
+        <h1>Bem-vindo ao Sistema de Prontuário</h1>
+        <p>Selecione uma das opções abaixo:</p>
+        <!-- <ul>
+            <li><a href="{% url 'submit_paciente_form' %}">Ficha de Paciente</a></li>
+            <li><a href="{% url 'pesquisar_paciente' %}">Pesquisar Paciente</a></li>
+        </ul> -->
+</header>
+
+
+<main>
+    <div class="title">O que você deseja fazer?</div>
+    <div class="card" onclick="acao('Cadastro de Paciente')">
+        <div class="card-left">
+            <div class="icon-box icon-orange">
+                <span class="material-icons">person_add</span>
+            </div>
+            <div>
+                <h3>Cadastro de Paciente</h3>
+                <span>Registrar novo paciente</span>
+            </div>
+        </div>
+        <span class="material-icons arrow">chevron_right</span>
+    </div>
+
+    <div class="card" onclick="acao('Atendimento')">
+        <div class="card-left">
+            <div class="icon-box icon-blue">
+                <span class="material-icons">stethoscope</span>
+            </div>
+            <div>
+                <h3>Atendimento</h3>
+                <span>Triagem e classificação de risco</span>
+            </div>
+        </div>
+        <span class="material-icons arrow">chevron_right</span>
+    </div>
+
+    <div class="card" onclick="acao('Histórico Médico')">
+        <div class="card-left">
+            <div class="icon-box icon-green">
+                <span class="material-icons">assignment</span>
+            </div>
+            <div>
+                <h3>Histórico Médico</h3>
+                <span>Consultar histórico do paciente</span>
+            </div>
+        </div>
+        <span class="material-icons arrow">chevron_right</span>
+    </div>
+</main>
+
+<footer>
+    💡 Este é um sistema de treinamento. Os dados não são salvos permanentemente.
+</footer>
+
+</body>
+</html> 

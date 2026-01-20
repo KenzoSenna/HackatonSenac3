@@ -5,7 +5,9 @@ from prontuario.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', ficha_view, name='ficha'),
+    path('', home_view, name='home'),
+
+    # path('', ficha_view, name='ficha'),
     path('ficha/', submit_paciente_form, name='submit_paciente_form'),
 
     path('atendimento/<int:paciente_id>/', submit_atendimento_form, name='atendimento'),
