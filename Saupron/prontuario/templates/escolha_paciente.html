@@ -1,0 +1,46 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>homepage</title>
+    <link rel="stylesheet" href="{% static 'formulario.css' %}">
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+<header>
+    <div class="nav-top">
+        <button onclick="voltar()" aria-label="Voltar">←</button>
+        <div class="nav-title">
+        <h1>Identificação</h1>
+        <p>Identifique o Paciente</p>
+        </div>
+    </div>
+</header> 
+
+<div class="wrap"> 
+    <h1>🩺 Digite o CPF do paciente</h1>
+
+    <form method="POST" action="{% url 'submit_paciente_form' %}" id="form-triagem">
+        {% csrf_token %}
+        <div class="card">
+            <h2>CPF</h2>
+            <div class="field">
+                <div class="input">{{ form.cpf }}</div>
+            </div>
+        </div>
+    </form>
+</div>
+<footer>
+    💡 Este é um sistema de treinamento. Os dados não são salvos permanentemente.
+</footer>
+
+</body>
+</html> 

@@ -1,0 +1,112 @@
+:root {
+    --bg: #F0F8FF;
+    --text: #0b1b2b;
+    --primary: #0a7cff;
+    --accent: #12b886;
+    --border: #dbe4ff;
+    --muted: #5c677d;
+    --card: #ffffff;
+    --radius: 14px;
+    --touch: 56px;
+}
+
+*{
+    font-family: "Montserrat", sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    line-height: 1.4;
+}
+
+.wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px;
+}
+
+h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.card {
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+
+.field {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.field label {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.field input,
+.field textarea,
+.field select {
+    padding: 14px;
+    font-size: 1.05rem;
+    border-radius: var(--radius);
+    border: 2px solid var(--border);
+    background: #fff;
+    color: var(--text);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+    outline: 3px solid #ffcc00;
+    border-color: var(--primary);
+}
+
+.actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 16px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(10,124,255,0.25);
+    transition: background 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #075ec2;
+}
+
+
+footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    margin: 32px 0 16px;    
+}
