@@ -1,5 +1,5 @@
 from django import forms
-from .models import Paciente, DadosClinicos, PrevioHistoricoMedico
+from .models import Paciente, DadosClinicos, ProtocoloManchester
 
 class PacienteForm(forms.ModelForm):
     class Meta:
@@ -27,14 +27,15 @@ class DadosClinicosForm(forms.ModelForm):
     class Meta:
         model = DadosClinicos
         fields = [
-            'razao', 'tipo_sanguineo', 'pressao_arterial', 'temperatura',
+            'razao', 'tipo_sanguineo', 'pressao_sistolica', 'pressao_diastolica', 'temperatura',
             'frequencia_respiratoria', 'saturacao_oxigenio', 'glicemia',
             'altura', 'peso', 'alergias', 'medicamentos', 'condicao_medica'
         ]
         widgets = {
             'razao': forms.TextInput(attrs={'id': 'razao', 'class': 'input'}),
             'tipo_sanguineo': forms.Select(attrs={'id': 'tipo_sanguineo', 'class': 'input'}),
-            'pressao_arterial': forms.TextInput(attrs={'id': 'PA', 'class': 'input'}),
+            'pressao_sistolica': forms.TextInput(attrs={'id': 'PS', 'class': 'input'}),
+            'pressao_diastolica': forms.TextInput(attrs={'id': 'PD', 'class': 'input'}),
             'temperatura': forms.TextInput(attrs={'id': 'temperatura', 'class': 'input'}),
             'frequencia_respiratoria': forms.NumberInput(attrs={'id': 'FR', 'class': 'input'}),
             'saturacao_oxigenio': forms.TextInput(attrs={'id': 'SO', 'class': 'input'}),
@@ -44,15 +45,26 @@ class DadosClinicosForm(forms.ModelForm):
             'alergias': forms.TextInput(attrs={'id': 'alergias', 'class': 'input'}),
             'medicamentos': forms.TextInput(attrs={'id': 'medicamentos', 'class': 'input'}),
             'condicao_medica': forms.TextInput(attrs={'id': 'CM', 'class': 'input'}),
-        }
-
-
-class PrevioHistoricoMedicoForm(forms.ModelForm):
-    class Meta:
-        model = PrevioHistoricoMedico
-        fields = ['internacao_anterior', 'cirurgia_anterior', 'doencas_familiares']
-        widgets = {
             'internacao_anterior': forms.TextInput(attrs={'id': 'internacao_anterior', 'class': 'input'}),
             'cirurgia_anterior': forms.TextInput(attrs={'id': 'cirurgia_anterior', 'class': 'input'}),
             'doencas_familiares': forms.TextInput(attrs={'id': 'doencas_familiares', 'class': 'input'}),
+        }
+        
+
+
+
+
+class PacienteSearchForm(forms.Form):
+    cpf = forms.CharField(
+        max_length=14,
+        widget=forms.TextInput(attrs={'id': 'cpf', 'class': 'input', 'placeholder': 'Digite o CPF do paciente'})
+    )
+
+class ProtocoloManchesterForm(forms.ModelForm):
+    class Meta:
+        model = ProtocoloManchester
+        fields = ['risco', 'anotacoes']
+        widgets = {
+            'risco': forms.Select(attrs={'id': 'risco', 'class': 'dropdown'}),
+            'anotacoes': forms.Textarea(attrs={'id': 'anotacoes', 'class': 'input', 'rows': 4}),
         }

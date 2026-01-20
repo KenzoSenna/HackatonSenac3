@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
 </head>
 
@@ -20,50 +22,47 @@
     </div>
         <h1>Bem-vindo ao Sistema de Prontuário</h1>
         <p>Selecione uma das opções abaixo:</p>
-        <!-- <ul>
-            <li><a href="{% url 'submit_paciente_form' %}">Ficha de Paciente</a></li>
-            <li><a href="{% url 'pesquisar_paciente' %}">Pesquisar Paciente</a></li>
-        </ul> -->
 </header>
 
 
 <main>
     <div class="title">O que você deseja fazer?</div>
-    <div class="card" onclick="acao('Cadastro de Paciente')">
+    <div class="card">
+        
         <div class="card-left">
             <div class="icon-box icon-orange">
                 <span class="material-icons">person_add</span>
             </div>
-            <div>
+            <a href="{% url 'submit_paciente_form' %}" class="btn">
                 <h3>Cadastro de Paciente</h3>
                 <span>Registrar novo paciente</span>
-            </div>
+            </a>
         </div>
         <span class="material-icons arrow">chevron_right</span>
     </div>
 
-    <div class="card" onclick="acao('Atendimento')">
+    <div class="card">
         <div class="card-left">
             <div class="icon-box icon-blue">
                 <span class="material-icons">stethoscope</span>
             </div>
-            <div>
+            <a href="{% url 'atendimento' %}" class="btn">
                 <h3>Atendimento</h3>
                 <span>Triagem e classificação de risco</span>
-            </div>
+            </a>
         </div>
         <span class="material-icons arrow">chevron_right</span>
     </div>
 
-    <div class="card" onclick="acao('Histórico Médico')">
+    <div class="card">
         <div class="card-left">
             <div class="icon-box icon-green">
                 <span class="material-icons">assignment</span>
             </div>
-            <div>
+            <a href="{% url 'pesquisar_paciente' %}" class="btn">
                 <h3>Histórico Médico</h3>
                 <span>Consultar histórico do paciente</span>
-            </div>
+            </a>
         </div>
         <span class="material-icons arrow">chevron_right</span>
     </div>
@@ -74,4 +73,6 @@
 </footer>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </html> 

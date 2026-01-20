@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Riscos</title>
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <header>
+        <div class="nav-top">
+            <button onclick="voltar()" aria-label="Voltar">←</button>
+            <div class="nav-title">
+                <h1>Análise de Riscos</h1>
+                <p>Resultados da Análise de Riscos</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <h1>🩺 Análise de Riscos do Paciente</h1>
+
+            <div class="card">
+                <h2>Resultados da Análise</h2>
+                <p><strong>Índice de Massa Corporal (IMC):</strong> {{ imc }} kg/m² - 
+                    {% if imc < 18.5 %}
+                        Abaixo do peso
+                    {% elif imc >= 18.5 and imc < 24.9 %}
+                        Peso normal
+                    {% elif imc >= 25 and imc < 29.9 %}
+                        Sobrepeso
+                    {% else %}
+                        Obesidade
+                    {% endif %}
+                </p>
+                <p><strong>Pressão Arterial:</strong> {{ pressao_sistolica }}/{{ pressao_diastolica }} mmHg - 
+                    {% if pressao_sistolica < 120 and pressao_diastolica < 80 %}
+                        Normal
+                    {% elif pressao_sistolica >= 120 and pressao_sistolica < 130 and pressao_diastolica < 80 %}
+                        Elevada
+                    {% elif (pressao_sistolica >= 130 and pressao_sistolica < 140) or (pressao_diastolica >= 80 and pressao_diastolica < 90) %}
+                        Hipertensão Estágio 1
+                    {% elif pressao_sistolica >= 140 or pressao_diastolica >= 90 %}
+                        Hipertensão Estágio 2
+                    {% else %}
+                        Indefinido
+                    {% endif %}
+                </p>
+                <p><strong>Saturação de Oxigênio:</strong> {{ saturacao }}% - 
+                    {% if saturacao >= 95 %}
+                        Normal
+                    {% elif saturacao >= 90 and saturacao < 95 %}
+                        Baixa
+                    {% else %}
+                        Muito Baixa
+                    {% endif %}
+                </p>
+                <p><strong>Temperatura:</strong> {{ temperatura }}°C - 
+                    {% if temperatura < 36.1 %}
+                        Hipotermia
+                    {% elif temperatura >= 36.1 and temperatura <= 37.2 %}
+                        Normal
+                    {% elif temperatura > 37.2 and temperatura <= 38 %}
+                        Febre Leve
+                    {% else %}
+                        Febre Alta
+                    {% endif %}
+                </p>
+                <p>
+                    <strong>Glicemia:</strong> {{ glicemia }} mg/dL - 
+                    {% if glicemia < 70 %}
+                        Hipoglicemia
+                    {% elif glicemia >= 70 and glicemia <= 99 %}
+                        Normal
+                    {% elif glicemia >= 100 and glicemia <= 125 %}
+                        Pré-diabetes
+                    {% else %}
+                        Diabetes
+                    {% endif %}
+                </p>
+                <p>
+                    <strong>
+                        Frequência Respiratória:</strong> {{ frequencia_respiratoria }} rpm - 
+                    {% if frequencia_respiratoria < 12 %}
+                        Bradipneia
+                    {% elif frequencia_respiratoria >= 12 and frequencia_respiratoria <= 20 %}
+                        Normal
+                    {% else %}
+                        Taquipneia
+                    {% endif %}
+                    </strong>
+                </p>    
+            </div>
+            <div class="card">
+                <h2>Recomendações</h2>
+                <ul>
+                    {% if imc >= 25 %}
+                        <li>Considere adotar uma dieta equilibrada e praticar exercícios físicos regularmente para controlar o peso.</li>
+                    {% endif %}
+                    {% if pressao_sistolica >= 130 or pressao_diastolica >= 80 %}
+                        <li>Monitore sua pressão arterial regularmente e consulte um médico para orientações específicas.</li>
+                    {% endif %}
+                    {% if saturacao < 95 %}
+                        <li>Evite ambientes com baixa oxigenação e consulte um profissional de saúde se os sintomas persistirem.</li>
+                    {% endif %}
+                    {% if temperatura > 37.2 %}
+                        <li>Mantenha-se hidratado e descanse. Procure atendimento médico se a febre persistir por mais de dois dias.</li>
+                    {% endif %}
+                    {% if glicemia >= 100 %}
+                        <li>Adote uma alimentação saudável, evite açúcares simples e pratique atividades físicas regularmente.</li>
+                    {% endif %}
+                    {% if frequencia_respiratoria < 12 or frequencia_respiratoria > 20 %}
+                        <li>Evite esforços físicos intensos e procure avaliação médica para identificar possíveis causas.</li>
+                    {% endif %}
+                </ul>
+
+
+            </div>
+
+        </div>
+    </main>

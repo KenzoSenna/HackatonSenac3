@@ -5,12 +5,17 @@
     <meta charset="UTF-8">
     <title>Sucesso</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
 </head>
 <body>
     <div id="form-success">
         <h2>Cadastro realizado com sucesso!</h2>
         <p>Os dados foram salvos corretamente.</p>
         <a href="{% url 'submit_paciente_form' %}" class="botao">Cadastrar novo paciente</a>
+        <a href="{% url 'home' %}" class="btn ">Voltar para a página inicial</a>
+        <a href="{% url 'analise_riscos' %}">Ver análise de riscos</a>
     </div>
+
+
 </body>
 </html>

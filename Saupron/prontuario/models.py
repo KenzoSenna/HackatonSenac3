@@ -32,8 +32,9 @@ class DadosClinicos(models.Model):
     TIPO_SANGUINEO_CHOICES = [('A+', 'A+'), ('A-', 'A-'), ('B+', 'B+'), ('B-', 'B-'),
     ('AB+', 'AB+'), ('AB-', 'AB-'), ('O+', 'O+'), ('O-', 'O-')]
     tipo_sanguineo = models.CharField(max_length=3, choices=TIPO_SANGUINEO_CHOICES, default='O+')
-    pressao_arterial = models.IntegerField()
-    temperatura = models.CharField(max_length=4)
+    pressao_sistolica = models.IntegerField()
+    pressao_diastolica = models.IntegerField()
+    temperatura = models.DecimalField(max_digits=4, decimal_places=1)
     frequencia_respiratoria = models.IntegerField()
     saturacao_oxigenio = models.CharField(max_length=4)
     glicemia = models.IntegerField()
@@ -42,12 +43,21 @@ class DadosClinicos(models.Model):
     alergias = models.CharField(max_length=255)
     medicamentos = models.CharField(max_length=255)
     condicao_medica = models.CharField(max_length=255)
-
-class PrevioHistoricoMedico(models.Model):
-    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, null=True)
     internacao_anterior = models.CharField(max_length=255)
     cirurgia_anterior = models.CharField(max_length=255)
     doencas_familiares = models.CharField(max_length=255)
+
+class ProtocoloManchester(models.Model):
+    paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, null=True)
+    RISCO_CHOICES = [
+        ('baixo', 'Baixo'),
+        ('medio', 'Médio'),
+        ('alto', 'Alto'),
+        ('muito_alto', 'Muito Alto'),
+    ]
+    risco = models.CharField(max_length=20, choices=RISCO_CHOICES, default='baixo')
+    anotacoes = models.TextField(null=True, blank=True)
+
 
 # class RevisaoSistemas(models.Model):
 #     # sensorial = models.

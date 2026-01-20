@@ -4,14 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>homepage</title>
+    <title>TRIENF - Atendimento</title>
     <link rel="stylesheet" href="{% static 'formulario.css' %}">
-    <!-- <link rel="stylesheet" href="{% static 'nav.css' %}"> -->
+    <link rel="stylesheet" href="{% static 'nav.css' %}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 
 <body>
@@ -28,10 +30,15 @@
 <main>
     <div class="wrap"> 
         <h1>🩺 Ficha de cadastro</h1>
-        <form method="POST" action="{% url 'submit_paciente_form' %}" id="form-triagem">
+        <form method="POST" id="form-triagem">
             {% csrf_token %}
             <div class="card">
                 <h2>Informações basicas</h2>
+                <div class="field">
+                    <label for="cpf">CPF</label>
+                    <input type="text" name="cpf" id="cpf" class="input"  required placeholder="Digite o CPF do paciente">
+                </div>
+
                 <div class="field">
                     <label for="razao">Razão do Atendimento</label>
                     <div class="input" id="razao">{{ form.razao }}</div>
@@ -46,8 +53,12 @@
             <div class="card">
                 <h2>Sinais Vitais</h2>
                 <div class="field">
-                    <label for="PA">Pressão Arterial</label>
-                    <div class="input" id="PA">{{ form.pressao_arterial }}</div>
+                    <label for="PS">Pressão Sistólica</label>
+                    <div class="input" id="PS">{{ form.pressao_sistolica }}</div>
+                </div>
+                <div class="field">
+                    <label for="PD">Pressão Diastólica</label>
+                    <div class="input" id="PD">{{ form.pressao_diastolica }}</div>
                 </div>
                 <div class="field">
                     <label for="temperatura">Temperatura</label>
@@ -99,8 +110,22 @@
                     <label for="CM">Condição Médica</label>
                     <div class="input" id="CM">{{ form.condicao_medica }}</div>
                 </div>
+
+                <div class="field">
+                    <label for="internacao_anterior">Internação Anterior</label>
+                    <div class="input" id="internacao_anterior">{{ form.internacao_anterior }}</div>
+                </div>
+                <div class="field">
+                    <label for="cirurgia_anterior">Cirurgia Anterior</label>
+                    <div class="input" id="cirurgia_anterior">{{ form.cirurgia_anterior }}</div>
+                </div>
+                <div class="field">
+                    <label for="doencas_familiares">Doenças Familiares</label>
+                    <div class="input" id="doencas_familiares">{{ form.doencas_familiares }}</div>
+                </div>
+                
             </div>
-            <button type="submit">Salvar Prontuário</button>
+            <button type="submit" class="btn btn-primary">Salvar Prontuário</button>
         </form>
         
     </div>
@@ -110,4 +135,23 @@
     💡 Este é um sistema de treinamento. Os dados não são salvos permanentemente.
 </footer>
 </body>
+    <script>
+  function criaMascara(mascaraInput) {
+    const maximoInput = document.getElementById(`${mascaraInput}Input`).maxLength;
+    let valorInput = document.getElementById(`${mascaraInput}Input`).value;
+    let valorSemPonto = document.getElementById(`${mascaraInput}Input`).value.replace(/([^0-9])+/g, "");
+    const mascaras = {
+      CPF: valorInput.replace(/[^\d]/g, "").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4")
+    };
+
+    valorInput.length === maximoInput ? document.getElementById(`${mascaraInput}Input`).value = mascaras[mascaraInput] : document.getElementById(`${mascaraInput}Input`).value = valorSemPonto;
+  };
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script>
+    function voltar() {
+        window.history.back();
+    }
+</script>
 </html> 
