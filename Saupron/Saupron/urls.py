@@ -15,6 +15,7 @@ urlpatterns = [
     path('success/', success_view, name='success_page'),
     
     path('pesquisa/', pesquisar_paciente, name='pesquisar_paciente'),
+
 ]
 
 

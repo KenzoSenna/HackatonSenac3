@@ -27,7 +27,7 @@ def submit_atendimento_form(request):
         except Paciente.DoesNotExist:
             messages.error(request, "Paciente com este CPF não foi encontrado.")
             form = DadosClinicosForm(request.POST)
-            return render(request, 'registro_historico.html', {'form': form})
+            return render(request, 'atendimento.html', {'form': form})
 
         form = DadosClinicosForm(request.POST)
         if form.is_valid():
@@ -56,6 +56,7 @@ def pesquisar_paciente(request):
             dados = DadosClinicos.objects.filter(paciente=paciente).last()
         except Paciente.DoesNotExist:
             messages.error(request, "Nenhum paciente encontrado com este CPF.")
+            
 
     return render(request, 'pesquisar_paciente.html', {
         'paciente': paciente,
@@ -65,3 +66,4 @@ def pesquisar_paciente(request):
 
 def home_view(request):
     return render(request, 'home.html')
+
